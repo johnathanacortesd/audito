@@ -52,82 +52,25 @@ st.markdown("""
         }
     }
     
-    /* Tarjetas de contenido modo oscuro */
-    .dark-card {
+    /* Modelo card específico */
+    .model-card {
         background: #1E293B;
         border-radius: 16px;
         padding: 2rem;
-        margin: 1.5rem 0;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        margin: 1rem 0;
         border: 1px solid #334155;
-        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
     }
     
-    .dark-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 50px rgba(124, 58, 237, 0.3);
-        border-color: #7C3AED;
-    }
-    
-    /* Tarjeta de instrucciones específica */
-    .instructions-card {
-        background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
-        border-radius: 20px;
-        padding: 2.5rem;
-        margin: 2rem 0;
-        border: 2px solid #7C3AED;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
-    }
-    
-    .instructions-card h3 {
-        color: #A78BFA !important;
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    
-    .instructions-card h4 {
-        color: #C4B5FD !important;
-        margin-top: 2rem;
-        margin-bottom: 1rem;
-        font-size: 1.3rem;
-    }
-    
-    .instructions-card p, 
-    .instructions-card li,
-    .instructions-card span {
-        color: #E0E7FF !important;
-        line-height: 1.8;
-        font-size: 1.05rem;
-    }
-    
-    .instructions-card strong {
-        color: #FBBF24 !important;
-        font-weight: 600;
-    }
-    
-    .instructions-card ul, 
-    .instructions-card ol {
-        margin-left: 1.5rem;
-    }
-    
-    .instructions-card li {
-        margin: 0.8rem 0;
-    }
-    
-    .instructions-card hr {
-        border-color: #7C3AED !important;
-        margin: 1.5rem 0;
-        opacity: 0.3;
-    }
-    
-    /* Highlight especial para el primer paso */
-    .first-step {
-        background: linear-gradient(135deg, #7C3AED20 0%, #EC489920 100%);
-        border: 2px solid #7C3AED;
-        border-radius: 12px;
-        padding: 1rem 1.5rem;
-        margin: 1.5rem 0;
+    .model-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #7C3AED, #EC4899);
     }
     
     /* Badges de características */
@@ -160,42 +103,6 @@ st.markdown("""
         border-color: #3B82F6;
     }
     
-    .feature-badge:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    }
-    
-    /* Modelo card específico */
-    .model-card {
-        background: #1E293B;
-        border-radius: 16px;
-        padding: 2rem;
-        margin: 1rem 0;
-        border: 1px solid #334155;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .model-card::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, #7C3AED, #EC4899);
-    }
-    
-    .model-card h3 {
-        color: #F1F5F9 !important;
-        margin-bottom: 1rem;
-    }
-    
-    .model-card p {
-        color: #CBD5E1 !important;
-        line-height: 1.6;
-    }
-    
     /* Botones personalizados modo oscuro */
     .stButton > button {
         background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
@@ -214,23 +121,6 @@ st.markdown("""
         transform: translateY(-2px);
         box-shadow: 0 6px 25px rgba(124, 58, 237, 0.5);
         border-color: #A78BFA;
-    }
-    
-    /* Animación de pulso */
-    @keyframes pulse {
-        0% {
-            box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.7);
-        }
-        70% {
-            box-shadow: 0 0 0 15px rgba(124, 58, 237, 0);
-        }
-        100% {
-            box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
-        }
-    }
-    
-    .pulse-animation {
-        animation: pulse 2s infinite;
     }
     
     /* Indicador de estado */
@@ -303,10 +193,6 @@ st.markdown("""
         background: #0F172A !important;
     }
     
-    .stTextInput > div > div > input[type="password"]::placeholder {
-        color: #64748B !important;
-    }
-    
     /* Login container */
     .login-container {
         background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
@@ -317,22 +203,6 @@ st.markdown("""
         margin-top: 5rem;
         position: relative;
         overflow: hidden;
-    }
-    
-    .login-container::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
-        animation: rotate 20s linear infinite;
-    }
-    
-    @keyframes rotate {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
     }
     
     /* Footer */
@@ -346,19 +216,31 @@ st.markdown("""
         color: #94A3B8;
     }
     
-    /* Alertas y mensajes */
-    .stAlert {
-        background: #1E293B !important;
-        color: #F1F5F9 !important;
-        border-radius: 12px;
-        border-left: 4px solid #7C3AED;
-        border: 1px solid #334155;
+    /* Contenedor desactivado */
+    .disabled-container {
+        background: #1E293B;
+        border-radius: 16px;
+        padding: 3rem;
+        text-align: center;
+        border: 2px dashed #334155;
+        margin: 2rem 0;
     }
     
-    div[data-testid="stExpander"] {
-        background: #1E293B;
-        border: 1px solid #334155;
-        border-radius: 12px;
+    /* Animación de pulso */
+    @keyframes pulse {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+    
+    .pulse-animation {
+        animation: pulse 2s infinite;
     }
     
     /* Mejoras para los iframes */
@@ -366,6 +248,17 @@ st.markdown("""
         border-radius: 16px !important;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5) !important;
         border: 2px solid #334155 !important;
+    }
+    
+    /* Expander personalizado */
+    div[data-testid="stExpander"] {
+        background: #1E293B;
+        border: 1px solid #334155;
+        border-radius: 12px;
+    }
+    
+    .stExpander > div > div > div > div {
+        color: #F1F5F9 !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -382,15 +275,14 @@ def check_password():
             st.session_state["password_correct"] = False
     
     if "password_correct" not in st.session_state or not st.session_state["password_correct"]:
-        # Contenedor de login mejorado
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
             st.markdown("""
                 <div class='login-container'>
-                    <h2 style='color: #F1F5F9; margin-bottom: 1rem; text-align: center; font-size: 2.5rem; position: relative; z-index: 1;'>
+                    <h2 style='color: #F1F5F9; margin-bottom: 1rem; text-align: center; font-size: 2.5rem;'>
                         🔐 Acceso Seguro
                     </h2>
-                    <p style='color: #CBD5E1; margin-bottom: 2rem; text-align: center; position: relative; z-index: 1;'>
+                    <p style='color: #CBD5E1; margin-bottom: 2rem; text-align: center;'>
                         Ingresa tu contraseña para acceder a TranscribeAI Pro
                     </p>
                 </div>
@@ -418,6 +310,9 @@ if 'show_option2' not in st.session_state:
 if 'show_instructions' not in st.session_state:
     st.session_state.show_instructions = False
 
+if 'show_turbo' not in st.session_state:
+    st.session_state.show_turbo = True
+
 # --- CÓDIGO PRINCIPAL DE LA APP ---
 if check_password():
     # Header principal con animación
@@ -431,125 +326,109 @@ if check_password():
             </p>
             <div style='text-align: center; margin-top: 1.5rem;'>
                 <span class='status-indicator'></span>
-                <span style='color: rgba(255,255,255,0.9); font-weight: 500;'>Sistema operativo • Conectado a GitHub</span>
+                <span style='color: rgba(255,255,255,0.9); font-weight: 500;'>Sistema operativo</span>
             </div>
         </div>
         """, unsafe_allow_html=True)
     
-    # Botones de acción rápida
+    # Solo 4 botones principales
     col1, col2, col3, col4 = st.columns(4)
     
     with col1:
-        if st.button("📖 Ver Instrucciones", use_container_width=True, key="btn_instructions"):
-            st.session_state.show_instructions = not st.session_state.show_instructions
+        if st.button("⚡ Modelo Rápido", use_container_width=True, help="Activar modelo Turbo"):
+            st.session_state.show_turbo = True
+            st.session_state.show_option2 = False
+            st.success("✅ Modelo Turbo activado")
     
     with col2:
-        if st.button("🚀 Activar Modelo Alternativo", use_container_width=True, key="btn_model"):
-            st.session_state.show_option2 = not st.session_state.show_option2
-            if st.session_state.show_option2:
-                st.success("✅ Modelo alternativo activado correctamente")
+        if st.button("🎯 Modelo Alternativo", use_container_width=True, help="Activar modelo Estándar"):
+            st.session_state.show_option2 = True
+            st.session_state.show_turbo = False
+            st.success("✅ Modelo Estándar activado")
     
     with col3:
-        if st.button("🔄 Recargar Aplicación", use_container_width=True, key="btn_reload"):
-            st.rerun()
+        if st.button("📖 Instrucciones", use_container_width=True, help="Ver guía de uso"):
+            st.session_state.show_instructions = not st.session_state.show_instructions
     
     with col4:
-        if st.button("ℹ️ Acerca de", use_container_width=True, key="btn_about"):
-            st.info("TranscribeAI Pro v2.0 - Desarrollado con Streamlit y OpenAI Whisper")
+        if st.button("🔄 Recargar", use_container_width=True, help="Reiniciar aplicación"):
+            st.rerun()
     
     # Mostrar instrucciones si está activado
     if st.session_state.show_instructions:
-        with st.container():
+        with st.expander("📚 **Guía de Uso Rápido**", expanded=True):
             st.markdown("""
-                <div class='instructions-card'>
-                    <h3>📚 Guía Completa de Uso</h3>
-                    <hr>
-                    
-                    <div class='first-step'>
-                        <h4>🎯 Paso 1: Acceder a la interfaz de carga</h4>
-                        <p><strong>IMPORTANTE:</strong> En la interfaz de Hugging Face que aparece abajo:</p>
-                        <ol>
-                            <li>Haz clic en la pestaña <strong>"Audio file"</strong> (no en "Microphone")</li>
-                            <li>Aparecerá el botón para cargar tu archivo de audio</li>
-                            <li>Selecciona o arrastra tu archivo de audio</li>
-                        </ol>
-                    </div>
-                    
-                    <h4>📋 Pasos completos para transcribir:</h4>
-                    <ol>
-                        <li><strong>Selecciona el modelo:</strong>
-                            <ul>
-                                <li>🚀 <strong>Turbo (Pestaña 1):</strong> 2x más rápido, ideal para la mayoría de casos</li>
-                                <li>🎯 <strong>Estándar (Pestaña 2):</strong> Mayor precisión para contenido técnico</li>
-                            </ul>
-                        </li>
-                        <li><strong>Carga tu archivo:</strong>
-                            <ul>
-                                <li>Haz clic en <strong>"Audio file"</strong> en la interfaz de abajo</li>
-                                <li>Selecciona tu archivo (MP3, WAV, M4A, MP4, WEBM, OGG)</li>
-                                <li>Espera a que se cargue completamente</li>
-                            </ul>
-                        </li>
-                        <li><strong>Configura opciones (opcional):</strong>
-                            <ul>
-                                <li>Task: Selecciona "transcribe" o "translate"</li>
-                                <li>Return timestamps: Activa si necesitas marcas de tiempo</li>
-                            </ul>
-                        </li>
-                        <li><strong>Inicia la transcripción:</strong>
-                            <ul>
-                                <li>Haz clic en el botón <strong>"Submit"</strong></li>
-                                <li>Espera el procesamiento (la velocidad depende del tamaño)</li>
-                            </ul>
-                        </li>
-                        <li><strong>Obtén tu resultado:</strong>
-                            <ul>
-                                <li>El texto aparecerá en el área de resultados</li>
-                                <li>Puedes copiarlo directamente con el botón de copiar</li>
-                            </ul>
-                        </li>
-                    </ol>
-                    
-                    <h4>💡 Consejos Profesionales:</h4>
-                    <ul>
-                        <li>✨ <strong>Calidad de audio:</strong> Archivos con audio claro dan mejores resultados</li>
-                        <li>🎯 <strong>Idioma automático:</strong> Whisper detecta el idioma automáticamente</li>
-                        <li>⏱️ <strong>Tiempo de procesamiento:</strong> ~1 minuto por cada 10 minutos de audio en modo Turbo</li>
-                        <li>🔄 <strong>Si falla:</strong> Activa el modelo alternativo con el botón superior</li>
-                        <li>📝 <strong>Puntuación:</strong> El modelo añade puntuación automáticamente</li>
-                    </ul>
-                    
-                    <h4>⚠️ Limitaciones Técnicas:</h4>
-                    <ul>
-                        <li>📏 <strong>Tamaño máximo:</strong> 25 MB (Turbo) / 50 MB (Estándar)</li>
-                        <li>⏳ <strong>Duración máxima:</strong> 30 minutos recomendado</li>
-                        <li>📁 <strong>Formatos:</strong> MP3, WAV, M4A, MP4, WEBM, OGG</li>
-                        <li>🌐 <strong>Conexión:</strong> Requiere internet estable</li>
-                    </ul>
-                    
-                    <h4>🆘 Solución de Problemas:</h4>
-                    <ul>
-                        <li>Si el modelo no responde → Recarga la página</li>
-                        <li>Si el archivo no se carga → Verifica el formato y tamaño</li>
-                        <li>Si la transcripción es incorrecta → Prueba el modelo Estándar</li>
-                        <li>Si hay timeout → Divide el audio en partes más pequeñas</li>
-                    </ul>
-                </div>
-                """, unsafe_allow_html=True)
+            ### 🎯 Cómo transcribir tu audio en 5 pasos:
+            
+            **1️⃣ Primero lo primero:**
+            En la interfaz que aparece abajo, busca y haz clic en la pestaña que dice **"Audio file"** 
+            (no uses "Microphone"). Esto es súper importante para poder cargar tu archivo.
+            
+            **2️⃣ Sube tu archivo:**
+            Una vez en "Audio file", verás un botón para cargar. Puedes arrastrar tu archivo 
+            o hacer clic para buscarlo en tu computadora. Acepta archivos MP3, WAV, M4A, MP4 y más.
+            
+            **3️⃣ Espera que cargue:**
+            Verás una barra de progreso. Si tu archivo es grande, puede tomar unos segundos.
+            No te preocupes, es normal.
+            
+            **4️⃣ Dale a transcribir:**
+            Cuando termine de cargar, haz clic en el botón **"Submit"** o **"Transcribe"**.
+            El modelo empezará a trabajar su magia 🪄
+            
+            **5️⃣ ¡Listo! Copia tu texto:**
+            El resultado aparecerá en la caja de texto de abajo. Puedes copiarlo con el 
+            botón de copiar o seleccionarlo todo con Ctrl+A (o Cmd+A en Mac).
+            
+            ---
+            
+            ### 💡 Tips para mejores resultados:
+            
+            🎤 **Audio limpio = mejor transcripción**
+            Entre menos ruido de fondo, mejor será el resultado.
+            
+            ⏱️ **Paciencia con archivos largos**
+            Un podcast de 30 minutos puede tardar 2-3 minutos en procesarse.
+            
+            🌍 **Funciona en cualquier idioma**
+            Whisper detecta automáticamente el idioma. ¡Habla en español, inglés o lo que quieras!
+            
+            📝 **Puntuación automática**
+            No te preocupes por los puntos y comas, el modelo los añade solo.
+            
+            ---
+            
+            ### ⚠️ Límites a tener en cuenta:
+            
+            📦 **Tamaño máximo:** 25 MB para el modelo rápido, 50 MB para el alternativo
+            
+            ⏳ **Duración recomendada:** Hasta 30 minutos para mejores resultados
+            
+            🔌 **Necesitas internet:** La transcripción se hace en la nube
+            
+            ---
+            
+            ### 🆘 ¿Algo no funciona?
+            
+            😵 **Si no responde:** Dale al botón "🔄 Recargar" arriba
+            
+            🐢 **Si va muy lento:** Prueba el "⚡ Modelo Rápido"
+            
+            ❌ **Si da error:** Verifica que tu archivo no pase de 25 MB
+            
+            🔄 **Si necesitas más precisión:** Cambia al "🎯 Modelo Alternativo"
+            """)
     
     # Separador visual
-    st.markdown("<hr style='border: 1px solid #334155; margin: 3rem 0;'>", unsafe_allow_html=True)
+    st.markdown("<hr style='border: 1px solid #334155; margin: 2rem 0;'>", unsafe_allow_html=True)
     
-    # Tabs para los modelos
-    tab1, tab2 = st.tabs(["🚀 Modelo Turbo (Recomendado)", "🎯 Modelo Estándar"])
-    
-    with tab1:
+    # Mostrar el modelo activo
+    if st.session_state.show_turbo:
         st.markdown("""
             <div class='model-card'>
-                <h3>⚡ Whisper Large v3 Turbo</h3>
-                <p>
-                    Versión optimizada para velocidad sin sacrificar calidad. 
-                    Procesamiento hasta 2x más rápido manteniendo una precisión del 95%.
+                <h3 style='color: #F1F5F9;'>⚡ Modelo Turbo - Activo</h3>
+                <p style='color: #CBD5E1;'>
+                    Versión optimizada para velocidad. Procesa hasta 2x más rápido con excelente precisión.
                 </p>
                 <div style='margin-top: 1.5rem;'>
                     <span class='feature-badge badge-speed'>⚡ Alta velocidad</span>
@@ -559,7 +438,6 @@ if check_password():
             </div>
             """, unsafe_allow_html=True)
         
-        # Aviso importante
         st.info("💡 **Recuerda:** Haz clic en la pestaña **'Audio file'** en la interfaz de abajo para cargar tu archivo")
         
         # Iframe del modelo Turbo
@@ -575,56 +453,50 @@ if check_password():
             """
             components.html(iframe_code_turbo, height=770, scrolling=True)
     
-    with tab2:
-        if st.session_state.show_option2:
-            st.markdown("""
-                <div class='model-card'>
-                    <h3>🎯 Whisper Large v3 Estándar</h3>
-                    <p>
-                        Modelo completo con máxima precisión. Ideal para contenido técnico, 
-                        múltiples hablantes o terminología especializada.
-                    </p>
-                    <div style='margin-top: 1.5rem;'>
-                        <span class='feature-badge badge-accuracy'>🏆 Máxima precisión</span>
-                        <span class='feature-badge badge-language'>📝 Puntuación mejorada</span>
-                        <span class='feature-badge badge-speed'>🔍 Detección de contexto</span>
-                    </div>
+    elif st.session_state.show_option2:
+        st.markdown("""
+            <div class='model-card'>
+                <h3 style='color: #F1F5F9;'>🎯 Modelo Estándar - Activo</h3>
+                <p style='color: #CBD5E1;'>
+                    Modelo completo con máxima precisión. Ideal para contenido técnico o con múltiples hablantes.
+                </p>
+                <div style='margin-top: 1.5rem;'>
+                    <span class='feature-badge badge-accuracy'>🏆 Máxima precisión</span>
+                    <span class='feature-badge badge-language'>📝 Puntuación mejorada</span>
+                    <span class='feature-badge badge-speed'>🔍 Mejor contexto</span>
                 </div>
-                """, unsafe_allow_html=True)
-            
-            # Aviso importante
-            st.info("💡 **Recuerda:** Haz clic en la pestaña **'Audio file'** en la interfaz de abajo para cargar tu archivo")
-            
-            # Iframe del modelo Estándar
-            with st.spinner('⏳ Cargando modelo Estándar...'):
-                iframe_code_standard = """
-                <iframe
-                    src="https://hf-audio-whisper-large-v3.hf.space"
-                    frameborder="0"
-                    width="100%"
-                    height="650"
-                    style="border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); border: 2px solid #334155;"
-                ></iframe>
-                """
-                components.html(iframe_code_standard, height=670, scrolling=True)
-        else:
-            st.markdown("""
-                <div class='dark-card' style='text-align: center; padding: 4rem;'>
-                    <h3 style='color: #F1F5F9; margin-bottom: 1.5rem;'>🔒 Modelo Estándar Desactivado</h3>
-                    <p style='color: #CBD5E1; margin-bottom: 2rem; font-size: 1.1rem;'>
-                        Este modelo está desactivado para optimizar el rendimiento de la aplicación.
-                        <br><br>
-                        Actívalo solo si necesitas máxima precisión o si el modelo Turbo no está disponible.
+            </div>
+            """, unsafe_allow_html=True)
+        
+        st.info("💡 **Recuerda:** Haz clic en la pestaña **'Audio file'** en la interfaz de abajo para cargar tu archivo")
+        
+        # Iframe del modelo Estándar
+        with st.spinner('⏳ Cargando modelo Estándar...'):
+            iframe_code_standard = """
+            <iframe
+                src="https://hf-audio-whisper-large-v3.hf.space"
+                frameborder="0"
+                width="100%"
+                height="650"
+                style="border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); border: 2px solid #334155;"
+            ></iframe>
+            """
+            components.html(iframe_code_standard, height=670, scrolling=True)
+    else:
+        st.markdown("""
+            <div class='disabled-container'>
+                <h3 style='color: #F1F5F9;'>🤔 Ningún modelo seleccionado</h3>
+                <p style='color: #CBD5E1; font-size: 1.1rem; margin-top: 1rem;'>
+                    Por favor, selecciona un modelo usando los botones de arriba:
+                </p>
+                <div style='margin-top: 2rem;' class='pulse-animation'>
+                    <p style='color: #A78BFA; font-size: 1.2rem;'>
+                        ⚡ Modelo Rápido - Para transcripciones veloces<br>
+                        🎯 Modelo Alternativo - Para máxima precisión
                     </p>
-                    <div class='pulse-animation' style='display: inline-block; padding: 1rem 2rem; 
-                         background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%); 
-                         border-radius: 12px; margin-top: 1rem;'>
-                        <p style='color: white; margin: 0; font-weight: 600;'>
-                            👆 Usa el botón "Activar Modelo Alternativo" arriba
-                        </p>
-                    </div>
                 </div>
-                """, unsafe_allow_html=True)
+            </div>
+            """, unsafe_allow_html=True)
     
     # Footer mejorado
     st.markdown("""
@@ -633,7 +505,7 @@ if check_password():
                 Desarrollado con ❤️ usando Streamlit y OpenAI Whisper
             </p>
             <p style='font-size: 0.9rem; opacity: 0.8;'>
-                © 2024 TranscribeAI Pro • Conectado a GitHub • v2.0
+                © 2024 TranscribeAI Pro • v2.0
             </p>
         </div>
         """, unsafe_allow_html=True)
