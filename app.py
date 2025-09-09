@@ -146,37 +146,6 @@ st.markdown("""
         }
     }
     
-    /* Tabs personalizados modo oscuro */
-    .stTabs [data-baseweb="tab-list"] {
-        gap: 10px;
-        background-color: #1E293B;
-        padding: 12px;
-        border-radius: 16px;
-        border: 1px solid #334155;
-    }
-    
-    .stTabs [data-baseweb="tab"] {
-        background-color: transparent;
-        border-radius: 12px;
-        color: #CBD5E1 !important;
-        font-weight: 600;
-        padding: 12px 24px;
-        transition: all 0.3s ease;
-        border: 1px solid transparent;
-    }
-    
-    .stTabs [data-baseweb="tab"]:hover {
-        background-color: rgba(124, 58, 237, 0.1);
-        border-color: #7C3AED;
-        color: #F1F5F9 !important;
-    }
-    
-    .stTabs [aria-selected="true"] {
-        background: linear-gradient(135deg, #7C3AED 0%, #6D28D9 100%);
-        color: white !important;
-        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
-    }
-    
     /* Input de contraseña modo oscuro */
     .stTextInput > div > div > input[type="password"] {
         background: #1E293B !important;
@@ -248,17 +217,6 @@ st.markdown("""
         border-radius: 16px !important;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5) !important;
         border: 2px solid #334155 !important;
-    }
-    
-    /* Expander personalizado */
-    div[data-testid="stExpander"] {
-        background: #1E293B;
-        border: 1px solid #334155;
-        border-radius: 12px;
-    }
-    
-    .stExpander > div > div > div > div {
-        color: #F1F5F9 !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -338,26 +296,35 @@ if check_password():
         if st.button("⚡ Modelo Rápido", use_container_width=True, help="Activar modelo Turbo"):
             st.session_state.show_turbo = True
             st.session_state.show_option2 = False
+            st.session_state.show_instructions = False
             st.success("✅ Modelo Turbo activado")
     
     with col2:
         if st.button("🎯 Modelo Alternativo", use_container_width=True, help="Activar modelo Estándar"):
             st.session_state.show_option2 = True
             st.session_state.show_turbo = False
+            st.session_state.show_instructions = False
             st.success("✅ Modelo Estándar activado")
     
     with col3:
         if st.button("📖 Instrucciones", use_container_width=True, help="Ver guía de uso"):
             st.session_state.show_instructions = not st.session_state.show_instructions
+            if st.session_state.show_instructions:
+                st.session_state.show_turbo = False
+                st.session_state.show_option2 = False
     
     with col4:
         if st.button("🔄 Recargar", use_container_width=True, help="Reiniciar aplicación"):
+            st.session_state.show_instructions = False
             st.rerun()
     
-    # Mostrar instrucciones si está activado
+    # Separador visual
+    st.markdown("<hr style='border: 1px solid #334155; margin: 2rem 0;'>", unsafe_allow_html=True)
+    
+    # Mostrar contenido según el estado
     if st.session_state.show_instructions:
-        with st.expander("📚 **Guía de Uso Rápido**", expanded=True):
-            st.markdown("""
+        # Mostrar las instrucciones
+        st.markdown("""
             ### 🎯 Cómo transcribir tu audio en 5 pasos:
             
             **1️⃣ Primero lo primero:**
@@ -419,11 +386,8 @@ if check_password():
             🔄 **Si necesitas más precisión:** Cambia al "🎯 Modelo Alternativo"
             """)
     
-    # Separador visual
-    st.markdown("<hr style='border: 1px solid #334155; margin: 2rem 0;'>", unsafe_allow_html=True)
-    
-    # Mostrar el modelo activo
-    if st.session_state.show_turbo:
+    elif st.session_state.show_turbo:
+        # Mostrar modelo Turbo
         st.markdown("""
             <div class='model-card'>
                 <h3 style='color: #F1F5F9;'>⚡ Modelo Turbo - Activo</h3>
@@ -440,7 +404,6 @@ if check_password():
         
         st.info("💡 **Recuerda:** Haz clic en la pestaña **'Audio file'** en la interfaz de abajo para cargar tu archivo")
         
-        # Iframe del modelo Turbo
         with st.spinner('⏳ Cargando modelo Turbo...'):
             iframe_code_turbo = """
             <iframe
@@ -454,6 +417,7 @@ if check_password():
             components.html(iframe_code_turbo, height=770, scrolling=True)
     
     elif st.session_state.show_option2:
+        # Mostrar modelo Estándar
         st.markdown("""
             <div class='model-card'>
                 <h3 style='color: #F1F5F9;'>🎯 Modelo Estándar - Activo</h3>
@@ -470,7 +434,6 @@ if check_password():
         
         st.info("💡 **Recuerda:** Haz clic en la pestaña **'Audio file'** en la interfaz de abajo para cargar tu archivo")
         
-        # Iframe del modelo Estándar
         with st.spinner('⏳ Cargando modelo Estándar...'):
             iframe_code_standard = """
             <iframe
@@ -482,23 +445,25 @@ if check_password():
             ></iframe>
             """
             components.html(iframe_code_standard, height=670, scrolling=True)
-        else:
-            st.markdown("""
-                <div class='disabled-container'>
-                    <h3 style='color: #F1F5F9;'>🤔 Ningún modelo seleccionado</h3>
-                    <p style='color: #CBD5E1; font-size: 1.1rem; margin-top: 1rem;'>
-                        Por favor, selecciona un modelo usando los botones de arriba:
-                    </p>
-                    <div style='margin-top: 2rem;' class='pulse-animation'>
-                        <p style='color: #A78BFA; font-size: 1.2rem;'>
-                            ⚡ Modelo Rápido - Para transcripciones veloces<br>
-                            🎯 Modelo Alternativo - Para máxima precisión
-                        </p>
-                    </div>
-                </div>
-                """, unsafe_allow_html=True)
     
-    # Footer mejorado
+    else:
+        # Ningún modelo seleccionado
+        st.markdown("""
+            <div class='disabled-container'>
+                <h3 style='color: #F1F5F9;'>🤔 Ningún modelo seleccionado</h3>
+                <p style='color: #CBD5E1; font-size: 1.1rem; margin-top: 1rem;'>
+                    Por favor, selecciona un modelo usando los botones de arriba:
+                </p>
+                <div style='margin-top: 2rem;' class='pulse-animation'>
+                    <p style='color: #A78BFA; font-size: 1.2rem;'>
+                        ⚡ Modelo Rápido - Para transcripciones veloces<br>
+                        🎯 Modelo Alternativo - Para máxima precisión
+                    </p>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    # Footer
     st.markdown("""
         <div class='footer'>
             <p style='font-size: 1.1rem; margin-bottom: 0.5rem;'>
