@@ -482,21 +482,21 @@ if check_password():
             ></iframe>
             """
             components.html(iframe_code_standard, height=670, scrolling=True)
-    else:
-        st.markdown("""
-            <div class='disabled-container'>
-                <h3 style='color: #F1F5F9;'>🤔 Ningún modelo seleccionado</h3>
-                <p style='color: #CBD5E1; font-size: 1.1rem; margin-top: 1rem;'>
-                    Por favor, selecciona un modelo usando los botones de arriba:
-                </p>
-                <div style='margin-top: 2rem;' class='pulse-animation'>
-                    <p style='color: #A78BFA; font-size: 1.2rem;'>
-                        ⚡ Modelo Rápido - Para transcripciones veloces<br>
-                        🎯 Modelo Alternativo - Para máxima precisión
+        else:
+            st.markdown("""
+                <div class='disabled-container'>
+                    <h3 style='color: #F1F5F9;'>🤔 Ningún modelo seleccionado</h3>
+                    <p style='color: #CBD5E1; font-size: 1.1rem; margin-top: 1rem;'>
+                        Por favor, selecciona un modelo usando los botones de arriba:
                     </p>
+                    <div style='margin-top: 2rem;' class='pulse-animation'>
+                        <p style='color: #A78BFA; font-size: 1.2rem;'>
+                            ⚡ Modelo Rápido - Para transcripciones veloces<br>
+                            🎯 Modelo Alternativo - Para máxima precisión
+                        </p>
+                    </div>
                 </div>
-            </div>
-            """, unsafe_allow_html=True)
+                """, unsafe_allow_html=True)
     
     # Footer mejorado
     st.markdown("""
