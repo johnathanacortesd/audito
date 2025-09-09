@@ -336,8 +336,8 @@ if check_password():
             o hacer clic para buscarlo en tu computadora. Acepta archivos MP3, WAV, M4A, MP4 y más.
             
             **3️⃣ Espera que cargue:**
-            Verás una barra de progreso. Si tu archivo es grande, puede tomar unos segundos.
-            No te preocupes, es normal.
+            Verás una barra de progreso mientras se sube el archivo. Si tu archivo es grande, puede tomar unos segundos.
+            Una vez cargado, aparecerá el nombre del archivo y el botón **"Submit"** debajo.
             
             **4️⃣ Dale a transcribir:**
             Cuando termine de cargar, haz clic en el botón **"Submit"** o **"Transcribe"**.
@@ -467,10 +467,10 @@ if check_password():
     st.markdown("""
         <div class='footer'>
             <p style='font-size: 1.1rem; margin-bottom: 0.5rem;'>
-                Desarrollado con ❤️ usando Streamlit y OpenAI Whisper
+                Desarrollado con 🤖 usando Streamlit y OpenAI Whisper
             </p>
             <p style='font-size: 0.9rem; opacity: 0.8;'>
-                © 2024 TranscribeAI Pro • v2.0
+                © 2025 Johnathan Cortés • v2.0
             </p>
         </div>
         """, unsafe_allow_html=True)
