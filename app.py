@@ -384,6 +384,8 @@ if check_password():
             ❌ **Si da error:** Verifica que tu archivo no pase de 25 MB
             
             🔄 **Si necesitas más precisión:** Cambia al "🎯 Modelo Alternativo"
+            
+            🆕 **Para procesar otro audio:** Dale al botón "🔄 Recargar" para limpiar y empezar de nuevo
             """)
     
     elif st.session_state.show_turbo:
@@ -470,7 +472,7 @@ if check_password():
                 Desarrollado con 🤖 usando Streamlit y OpenAI Whisper
             </p>
             <p style='font-size: 0.9rem; opacity: 0.8;'>
-                © 2025 Johnathan Cortés • v2.0
+                © 2025 | Johnathan Cortés • v2.0
             </p>
         </div>
         """, unsafe_allow_html=True)
