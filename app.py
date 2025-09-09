@@ -469,10 +469,10 @@ if check_password():
     st.markdown("""
         <div class='footer'>
             <p style='font-size: 1.1rem; margin-bottom: 0.5rem;'>
-                Desarrollado con 🤖 usando Streamlit y OpenAI Whisper
+                Desarrollado con ❤️ usando Streamlit y OpenAI Whisper
             </p>
             <p style='font-size: 0.9rem; opacity: 0.8;'>
-                © 2025 | Johnathan Cortés • v2.0
+                © 2024 TranscribeAI Pro • v2.0
             </p>
         </div>
         """, unsafe_allow_html=True)
